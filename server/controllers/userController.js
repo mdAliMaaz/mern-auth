@@ -46,7 +46,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     if (newUser) {
 
         generateToken(res, newUser._id)
-        res.status(201).json({ message: "new User Created", id: newUser._id, name: newUser.name, email: newUser.email })
+        res.status(201).json({ success: true, message: "new User Created", id: newUser._id, name: newUser.name, email: newUser.email })
     }
     else {
         res.status(400)
@@ -80,7 +80,7 @@ export const userAuth = asyncHandler(async (req, res) => {
         throw new Error(`Invalid password'`);
     }
     generateToken(res, existingUser._id)
-    res.status(200).json({ message: "user Login Success", id: existingUser._id, name: existingUser.name, email: existingUser.email })
+    res.status(200).json({ success: true, message: "user Login Success", id: existingUser._id, name: existingUser.name, email: existingUser.email })
 })
 
 
