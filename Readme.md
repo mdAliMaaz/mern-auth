@@ -120,8 +120,79 @@ SECRET_KEY= i am strong
 npm run dev or yarn run dev
 ```
 
-what you will server
+what you will see in console
 
 ```
 server listening on 3500
 ```
+
+### Now our server is ready ,so now lets create routes controllers ,Bascially we some endpoints on which we can request
+
+run the following commands in your console
+
+```
+mern-auth > server mkdir routes controllers helper
+```
+
+Now inside routes folder create `userRoutes.js` file
+and write the following code.
+
+```
+Import express from 'express'
+
+const router = express.Router();
+
+router.route('/api/users').get(getAllUsers).post(registerUser);
+
+router.route('/api/users/auth').post(userAuth);
+
+router.route('/api/users/logout').post(logout);
+
+router.route('/api/users/profile').get(getUserProfile).put( updateUser)
+
+
+
+export default router
+
+```
+
+Ok now lets add all controller functions. In order to do that create a new file in controller folder named as `userController.js`
+
+and add the following to your code in `userController.js` file
+
+```
+export const getAllUsers = (req,res) =>{
+  res.json({message:"getAllUsers"})
+}
+
+
+export const registerUser = (req,res) =>{
+  res.json({message:"registerUser"})
+}
+
+
+export const userAuth = (req,res) =>{
+  res.json({message:"userAuth"})
+}
+
+
+export const logout = (req,res) =>{
+  res.json({message:"logout"})
+}
+
+export const getUserProfile = (req,res) =>{
+  res.json({message:"getUserProfile"})
+}
+
+export const updateUser = (req,res) =>{
+  res.json({message:"updateUser"})
+}
+```
+
+### Now import all the controllers in your `userRoute.js` file
+
+```
+import { getAllUsers, userAuth, logout, getUserProfile, updateUser, registerUser } from '../controllers/userController.js';
+```
+
+Now open `postman` and test all your routes
