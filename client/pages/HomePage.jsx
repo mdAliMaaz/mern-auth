@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import Hero from "../src/components/Hero";
 
 const HomePage = () => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+  }, []);
   return (
     <div>
       <Hero />

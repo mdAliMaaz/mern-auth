@@ -6,17 +6,22 @@ import { logout } from "../../store/authSlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useEffect } from "react";
+import axios from "axios";
+
 const Header = () => {
   let { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const { data } = await axios.post(
+      "http://localhost:3500/api/users/logout",
+      "",
+      { withCredentials: true }
+    );
+    console.log(data);
     dispatch(logout());
-    setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+    navigate("/login");
   };
 
   return (

@@ -28,7 +28,6 @@ const LogIn = () => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // setFormData({ ...formData, [name]: value });
   };
 
   const handleSuccess = (msg) => {
@@ -44,7 +43,8 @@ const LogIn = () => {
     try {
       const { data } = await axios.post(
         "http://localhost:3500/api/users/auth",
-        formData
+        formData,
+        { withCredentials: true }
       );
 
       const { message, success } = data;
@@ -56,8 +56,6 @@ const LogIn = () => {
           navigate("/");
         }, 1000);
       }
-
-      console.log(data);
     } catch (error) {
       const msg = error.response.data.message || null;
       if (msg !== null) {

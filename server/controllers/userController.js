@@ -138,7 +138,7 @@ export const updateUser = asyncHandler(async (req, res) => {
 // @route post /api/users/logout
 // @access private
 export const logout = asyncHandler(async (req, res) => {
-    res.cookie("token", "", {
+    res.cookie("jwt", "", {
         httpOnly: true
 
     })
